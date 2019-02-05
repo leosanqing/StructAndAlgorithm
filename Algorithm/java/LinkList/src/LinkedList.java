@@ -1,3 +1,8 @@
+/**
+ * 链表
+ * @param <T>
+ */
+
 public class LinkedList<T> {
     private Node head;
     private Node tail;
@@ -101,6 +106,9 @@ public class LinkedList<T> {
         p.next.data=obj;
     }
 
+    /**
+     * 遍历链表
+     */
     public void traverse(){
         p=head;
         if(p!=null){
