@@ -3,6 +3,8 @@ import java.util.TreeSet;
 
 /**
  * 题目：打印字符串的全排列
+ * 输入： "ABC"
+ * 输出： ABC ACB BAC BCA CAB CBA
  *
  * 思路：依次交换第一个和后面的字符串，后面字符串全排列
  *
