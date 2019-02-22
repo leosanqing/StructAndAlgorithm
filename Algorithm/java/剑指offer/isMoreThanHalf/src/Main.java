@@ -1,3 +1,8 @@
+/**
+ * 题目：找出数组中超过一半的那个数字
+ * 思路：从头遍历数组，如果相同，则加一，不同则减一
+ *      如果times为零，那么就将下一个数字赋值给他
+ */
 public class Main {
     public static void main(String[] args) {
         
