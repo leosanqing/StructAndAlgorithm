@@ -5,8 +5,8 @@ public class MyHashMap {
 
     // 初始默认的数组容量
     static final int INIT_CAPACITY = 1<<4;
-    //数组最大的容量
-    static final int MAX_CAPATITY = 1<<30;
+    //数组最大的容量,因为 数组设置为 2的整次方倍，而 31 次方为负数，所以最大只能为 1 << 30
+    static final int MAX_CAPACITY = 1<<30;
     // 默认的装填因子
     static final float DEFAULT_LOADFACTOR = 0.75f;
 
@@ -80,7 +80,7 @@ public class MyHashMap {
         n |= n >>> 4;
         n |= n >>> 8;
         n |= n >>> 16;
-        return (n < 0) ? 1 : (n >= MAX_CAPATITY) ? MAX_CAPATITY : n + 1;
+        return (n < 0) ? 1 : (n >= MAX_CAPACITY) ? MAX_CAPACITY : n + 1;
     }
 
 
@@ -104,8 +104,8 @@ public class MyHashMap {
         if(initCapacity<0)
             throw new IllegalArgumentException("初始化容量失败: "+
                                                     initCapacity);
-        if(initCapacity>=MAX_CAPATITY)
-            initCapacity=MAX_CAPATITY;
+        if(initCapacity>= MAX_CAPACITY)
+            initCapacity= MAX_CAPACITY;
         if(loadFactor<=0||Float.isNaN(loadFactor))
             throw new IllegalArgumentException("装填因子不合法"+
                                                     loadFactor);
@@ -141,14 +141,24 @@ public class MyHashMap {
             if(table==null){
                 float ft=(float) s/loadFactor+1.0f;
 
-                int t=(ft<(float)MAX_CAPATITY)?(int)ft:MAX_CAPATITY;
+                int t=(ft<(float) MAX_CAPACITY)?(int)ft: MAX_CAPACITY;
 
+                // 如果 原来的 hashmap的 table 的大小为0（第一次添加数字）；
+                // 那么就将他按照现在的 添加的table 大小进行扩容
                 if(t>threshold){
                     threshold=tableSizeFor(t);
                 }
 
             }else if(s>threshold){
                 resize();
+            }
+
+            // 把各个 Entry 放入到 map中
+            for( Object e :  m.entrySet()){
+
+                Object key = ((Map.Entry) e).getKey();
+                Object value = ((Map.Entry) e).getValue();
+                //putVal();
             }
         }
     }
@@ -158,8 +168,26 @@ public class MyHashMap {
      * @return
      */
     final  Entry[] resize() {
-        Entry[] oldTab=table;
-        int
+        // 定义旧的数组为 Entry 类型的数组，oldTab
+        Entry[] oldTab = table;
+        // 如果oldTab==null  则返回 0，否则返回数组大小
+        int oldCap = (oldTab==null) ? 0 : oldTab.length;
 
+        int oldThreshold = threshold;
+
+        int newCap=0,newThreshold=0;
+        if(oldCap>0){
+            // 如果 原来的数组大小已经大于等于了最大值，那么阈值设置为 Integer的最大值
+            if(oldCap >= MAX_CAPACITY){
+                threshold = Integer.MAX_VALUE;
+                return oldTab;
+            }else if ((newCap = oldCap << 1) < MAX_CAPACITY &&
+                      oldCap >= INIT_CAPACITY)
+                newThreshold = oldThreshold << 1;
+
+        }
+
+
+        return null;
     }
 }
