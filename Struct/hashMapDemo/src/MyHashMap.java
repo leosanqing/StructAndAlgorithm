@@ -149,7 +149,10 @@ public class MyHashMap {
                     threshold=tableSizeFor(t);
                 }
 
-            }else if(s>threshold){
+
+            }
+            // 如果添加的 entries 的 table 大小大于 阈值，就扩容
+            else if(s>threshold){
                 resize();
             }
 
@@ -181,8 +184,11 @@ public class MyHashMap {
             if(oldCap >= MAX_CAPACITY){
                 threshold = Integer.MAX_VALUE;
                 return oldTab;
-            }else if ((newCap = oldCap << 1) < MAX_CAPACITY &&
+            }
+
+            else if ((newCap = oldCap << 1) < MAX_CAPACITY &&
                       oldCap >= INIT_CAPACITY)
+
                 newThreshold = oldThreshold << 1;
 
         }
