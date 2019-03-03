@@ -1,3 +1,6 @@
+import org.omg.IOP.ENCODING_CDR_ENCAPS;
+
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -179,21 +182,85 @@ public class MyHashMap {
         int oldThreshold = threshold;
 
         int newCap=0,newThreshold=0;
+
+        // 说明已经不是第一次 扩容，那么已经初始化过，容量一定是 2的n次方，所以可以直接位运算
         if(oldCap>0){
-            // 如果 原来的数组大小已经大于等于了最大值，那么阈值设置为 Integer的最大值
+            // 如果 原来的数组大小已经大于等于了最大值，那么阈值设置为 Integer的最大值,即不会再进行扩容
             if(oldCap >= MAX_CAPACITY){
                 threshold = Integer.MAX_VALUE;
                 return oldTab;
             }
 
+            // 因此已经不是第一次扩容，一定是2的n次方
             else if ((newCap = oldCap << 1) < MAX_CAPACITY &&
                       oldCap >= INIT_CAPACITY)
 
                 newThreshold = oldThreshold << 1;
 
         }
+        // 如果oldThreshold > 0,并且oldCap == 0，说明是还没有进行调用resize方法。
+        // 说明输入了初始值，且oldThreshold为 比输入值大的最小的2的n次方
+        // 那么就把 oldThreshold 的值赋给 newCap ，因为这个值现在为 比输入值大的最小的2的n次方
+        else if(oldThreshold>0)
+            newCap = oldThreshold;
 
+        // 这个条件是 第一次扩容，且 oldThreshold == 0，即输入的initialCap == 0；
+        else{
+            newCap = INIT_CAPACITY;
+            newThreshold = (int) (INIT_CAPACITY * DEFAULT_LOADFACTOR);
+        }
+
+        if(newThreshold == 0){
+
+            float ft = (float) (newCap * loadFactor);
+            newThreshold =(newCap < MAX_CAPACITY && ft < (float) MAX_CAPACITY ?
+                    (int )ft : Integer.MAX_VALUE);
+        }
+
+        threshold = newThreshold;
+
+        Entry newTable[] = new Entry[newCap];
+        table=newTable;
+
+        // 将原来数组中的所有元素都 copy进新的数组
+        if(oldTab != null){
+            for (int j = 0; j < oldCap; j++) {
+                Entry e;
+
+                if((e = oldTab[j]) != null){
+                    oldTab[j] = null;
+
+                    // 说明还没有成链，数组上只有一个
+                    if(e.next == null){
+                        // 重新计算 数组索引 值
+                        newTable[e.h & (newCap-1)] = e;
+
+                    }
+                    // 判断是否为树结构
+                    //else if (e instanceof TreeNode)
+
+
+                    // 如果不是树，只是链表
+                    else{
+                        Entry loHead=null, loTail =null;
+                        Entry hiHead = null, hiTail = null;
+                        Entry next;
+                        do {
+                            next = e.next;
+
+                        }
+
+                    }
+                }
+
+            }
+        }
 
         return null;
     }
+
+
+
+
+
 }
