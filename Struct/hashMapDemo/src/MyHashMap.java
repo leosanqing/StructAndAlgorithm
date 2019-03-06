@@ -15,17 +15,15 @@ public class MyHashMap {
 
 
     /**
-     * 定义 Entry类
-     * @param <K>
-     * @param <V>
+     *
      */
-    static class Entry<K,V>{
-         K key;
-        private V value;
-        private Entry<K,V> next;
+    static class Entry{
+        Object key;
+        private Object value;
+        private Entry next;
         int h;
 
-        public Entry(K key, V value, Entry next, int h) {
+        public Entry(int h,Object key, Object value, Entry next) {
             this.key = key;
             this.value = value;
             this.next = next;
@@ -36,17 +34,17 @@ public class MyHashMap {
 
         }
 
-        public K getKey() {
+        public Object getKey() {
             return key;
         }
 
 
-        public V getValue() {
+        public Object getValue() {
             return value;
         }
 
-        public V setValue(V newValue) {
-            V oldValue=value;
+        public Object setValue(Object newValue) {
+            Object oldValue=value;
             this.value = newValue;
             return oldValue;
 
@@ -68,6 +66,9 @@ public class MyHashMap {
 
 
     // 返回 hash值 ，如果 key 为 null，返回 0
+    // 重新计算的哈希值为  原来的hashCode 和 高八位进行相与，
+    // 这样做的好处： 如果不这样，当数组较短的时候，只能有低位进行运算，高位无效，分布不均
+
     static final int hash(Object key){
         int h;
         return (key==null) ? 0 : (h=key.hashCode())^(h >>> 16);
@@ -164,9 +165,102 @@ public class MyHashMap {
 
                 Object key = ((Map.Entry) e).getKey();
                 Object value = ((Map.Entry) e).getValue();
-                //putVal();
+                putVal(hash(key),key,value,false,evict);
             }
         }
+    }
+
+    private void putVal(int hash, Object key, Object value, boolean onlyIfAbsent, boolean evict) {
+        Entry[] tab;
+        Entry p;
+        int n,i;
+        // 如果第一次 进行存放数据，进行初始化，table 被延迟到进行数据存放时才初始化
+        if((tab = table) == null || (n = table.length)==0){
+            n = (tab = resize()).length;
+        }
+        if((p = table[i = ((n - 1) & hash)]) == null){
+            tab[i] = newEntry(hash,key,value,null);
+        }
+
+        else {
+            Entry e;
+            Object k;
+            // 如果 key 相同，那么就直接将 value 覆盖
+            // 为什么要比较这么多次
+
+            // 1.首先判断 哈希值是否相同
+            if(p.h == hash &&
+                    // 2.判断两个key是否相等，使用 '==' 是非字符串情况，之比较两个的内容，使用'equals' 是针对字符串
+                    (((k = p.key) == key) || (key != null && key.equals(k))))
+                // 覆盖value值
+                e = p;
+
+            // 这个是树的情况
+            //else if(p instance of TreeNode)
+
+            // 链
+            else{
+                for(int binCount=0;;++binCount){
+                    // 遍历到最后，插入
+                    if((e = p.next) == null){
+                        p.next = newEntry(hash,key,value,null);
+
+                        /*
+                          如果 binCount > 转化树的阈值 ,则将链表转化为树
+
+                        if(binCount >= TREEIFY_THRESHOLD-1)
+                            treeifyBin(tab,hash);
+
+                        */
+                        break;
+                    }
+                    if(p.h == hash &&
+                            (((k = p.key) == key) || (key != null && key.equals(k))))
+                        break;
+                    // 移动到下一个
+                    p = e;
+                }
+
+
+
+                // 如果有相应的映射
+                if(e != null){
+                     Object oldValue = e.value;
+                     if(!onlyIfAbsent || oldValue == null)
+                         e.value = value;
+                }
+
+            }
+
+
+
+        }
+        // 修改次数 ++
+        ++ modCount;
+
+        // 大于阈值就扩容
+        if(++size >threshold)
+            resize();
+
+
+    }
+
+
+
+    public Object get(Object key){
+        Entry e;
+
+        return (e = getNode(hash(key),key)) == null ? null : e.value;
+
+    }
+
+    private Entry getNode(int hash, Object key) {
+
+        return null;
+    }
+
+    private Entry newEntry(int hash, Object key, Object value, Entry entry) {
+        return new Entry(hash,key,value,entry);
     }
 
     /**
@@ -240,14 +334,45 @@ public class MyHashMap {
                     //else if (e instanceof TreeNode)
 
 
-                    // 如果不是树，只是链表
+                    // 如果不是树，只是链表,即长度还没有大于 8 进化成树
                     else{
+                        // 扩容后，如果元素的 index 还是原来的。就使用这个 lo前缀的
                         Entry loHead=null, loTail =null;
+
+                        // 扩容后  元素index改变，那么就使用 hi前缀开头的
                         Entry hiHead = null, hiTail = null;
                         Entry next;
                         do {
                             next = e.next;
+                            if((e.h & oldCap) == 0){
+                                // 如果 loTail == null ,说明这个 位置上是第一次添加，没有哈希冲突
+                                if(loTail == null)
+                                    loHead = e;
+                                else
+                                    loTail.next = e;
+                                loTail = e;
+                            }
+                            else{
+                                if(hiTail == null)
+                                    loHead = e;
+                                else
+                                    hiTail.next = e;
+                                hiTail = e ;
+                            }
 
+                        }while ((e = next) != null);
+
+
+                        if(loTail != null){
+                            loTail.next = null;
+                            newTable[j] = loHead;
+                        }
+
+                        // 新的index 等于原来的 index+oldCap
+                        else {
+
+                            hiTail.next = null;
+                            newTable[j+oldCap] = hiHead;
                         }
 
                     }
@@ -256,7 +381,7 @@ public class MyHashMap {
             }
         }
 
-        return null;
+        return newTable;
     }
 
 

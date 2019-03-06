@@ -36,8 +36,8 @@
       <file leaf-file-name="HashMap.java" pinned="false" current-in-tab="true">
         <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/HashMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19324">
-              <caret line="1802" column="7" lean-forward="true" selection-start-line="1802" selection-start-column="7" selection-end-line="1802" selection-end-column="7" />
+            <state relative-caret-position="20494">
+              <caret line="1779" column="9" selection-start-line="1779" selection-start-column="9" selection-end-line="1779" selection-end-column="9" />
               <folding>
                 <element signature="e#12846#12847#0" expanded="true" />
                 <element signature="e#12924#12925#0" expanded="true" />
@@ -49,8 +49,11 @@
                 <element signature="e#23682#23683#0" expanded="true" />
                 <element signature="e#24329#24330#0" expanded="true" />
                 <element signature="e#24394#24395#0" expanded="true" />
+                <element signature="e#26390#29822#0" />
                 <element signature="e#31057#31058#0" expanded="true" />
                 <element signature="e#31095#31096#0" expanded="true" />
+                <element signature="e#66765#66766#0" expanded="true" />
+                <element signature="e#66822#66823#0" expanded="true" />
                 <element signature="e#68865#68866#0" expanded="true" />
                 <element signature="e#68916#68917#0" expanded="true" />
               </folding>
@@ -61,12 +64,23 @@
       <file leaf-file-name="MyHashMap.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MyHashMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="249" selection-start-line="249" selection-end-line="249" />
+            <state relative-caret-position="503">
+              <caret line="257" selection-start-line="257" selection-end-line="257" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1176#1177#0" expanded="true" />
-                <element signature="e#1252#1253#0" expanded="true" />
+                <element signature="e#779#780#0" expanded="true" />
+                <element signature="e#813#814#0" expanded="true" />
+                <element signature="e#845#846#0" expanded="true" />
+                <element signature="e#881#882#0" expanded="true" />
+                <element signature="e#1061#1062#0" expanded="true" />
+                <element signature="e#1096#1097#0" expanded="true" />
+                <element signature="e#1139#1140#0" expanded="true" />
+                <element signature="e#1179#1180#0" expanded="true" />
+                <element signature="e#1218#1219#0" expanded="true" />
+                <element signature="e#1294#1295#0" expanded="true" />
+                <element signature="e#5330#5331#0" expanded="true" />
+                <element signature="e#5384#5385#0" expanded="true" />
+                <element signature="method#resize#0;class#MyHashMap#0" />
               </folding>
             </state>
           </provider>
@@ -98,39 +112,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="200">
               <caret line="830" selection-start-line="830" selection-end-line="830" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="URLClassPath.class" pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/jre/lib/rt.jar!/sun/misc/URLClassPath.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="399" selection-start-line="399" selection-end-line="399" />
-              <folding>
-                <element signature="e#13441#14062#0" expanded="true" />
-                <element signature="e#14061#14062#0" expanded="true" />
-                <element signature="e#21949#23462#0" expanded="true" />
-                <element signature="e#23461#23462#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="URLClassLoader.java" pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/net/URLClassLoader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="365" selection-start-line="365" selection-end-line="365" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="String.java" pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/lang/String.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="1474" selection-start-line="1474" selection-end-line="1474" />
             </state>
           </provider>
         </entry>
@@ -296,12 +277,12 @@
       <option name="presentableId" value="Default" />
       <updated>1551147683816</updated>
       <workItem from="1551147688652" duration="2893000" />
-      <workItem from="1551316961876" duration="20143000" />
+      <workItem from="1551316961876" duration="29981000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23036000" />
+    <option name="totallyTimeSpent" value="32874000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -377,8 +358,19 @@
           <caret column="24" lean-forward="true" selection-start-column="24" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1176#1177#0" expanded="true" />
-            <element signature="e#1252#1253#0" expanded="true" />
+            <element signature="e#779#780#0" expanded="true" />
+            <element signature="e#813#814#0" expanded="true" />
+            <element signature="e#845#846#0" expanded="true" />
+            <element signature="e#881#882#0" expanded="true" />
+            <element signature="e#1061#1062#0" expanded="true" />
+            <element signature="e#1096#1097#0" expanded="true" />
+            <element signature="e#1139#1140#0" expanded="true" />
+            <element signature="e#1179#1180#0" expanded="true" />
+            <element signature="e#1218#1219#0" expanded="true" />
+            <element signature="e#1294#1295#0" expanded="true" />
+            <element signature="e#5330#5331#0" expanded="true" />
+            <element signature="e#5384#5385#0" expanded="true" />
+            <element signature="method#resize#0;class#MyHashMap#0" />
           </folding>
         </state>
       </provider>
@@ -499,20 +491,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MyHashMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="249" selection-start-line="249" selection-end-line="249" />
+        <state relative-caret-position="503">
+          <caret line="257" selection-start-line="257" selection-end-line="257" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1176#1177#0" expanded="true" />
-            <element signature="e#1252#1253#0" expanded="true" />
+            <element signature="e#779#780#0" expanded="true" />
+            <element signature="e#813#814#0" expanded="true" />
+            <element signature="e#845#846#0" expanded="true" />
+            <element signature="e#881#882#0" expanded="true" />
+            <element signature="e#1061#1062#0" expanded="true" />
+            <element signature="e#1096#1097#0" expanded="true" />
+            <element signature="e#1139#1140#0" expanded="true" />
+            <element signature="e#1179#1180#0" expanded="true" />
+            <element signature="e#1218#1219#0" expanded="true" />
+            <element signature="e#1294#1295#0" expanded="true" />
+            <element signature="e#5330#5331#0" expanded="true" />
+            <element signature="e#5384#5385#0" expanded="true" />
+            <element signature="method#resize#0;class#MyHashMap#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/HashMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19324">
-          <caret line="1802" column="7" lean-forward="true" selection-start-line="1802" selection-start-column="7" selection-end-line="1802" selection-end-column="7" />
+        <state relative-caret-position="20494">
+          <caret line="1779" column="9" selection-start-line="1779" selection-start-column="9" selection-end-line="1779" selection-end-column="9" />
           <folding>
             <element signature="e#12846#12847#0" expanded="true" />
             <element signature="e#12924#12925#0" expanded="true" />
@@ -524,8 +527,11 @@
             <element signature="e#23682#23683#0" expanded="true" />
             <element signature="e#24329#24330#0" expanded="true" />
             <element signature="e#24394#24395#0" expanded="true" />
+            <element signature="e#26390#29822#0" />
             <element signature="e#31057#31058#0" expanded="true" />
             <element signature="e#31095#31096#0" expanded="true" />
+            <element signature="e#66765#66766#0" expanded="true" />
+            <element signature="e#66822#66823#0" expanded="true" />
             <element signature="e#68865#68866#0" expanded="true" />
             <element signature="e#68916#68917#0" expanded="true" />
           </folding>
