@@ -1,6 +1,3 @@
-import org.omg.IOP.ENCODING_CDR_ENCAPS;
-
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -15,7 +12,11 @@ public class MyHashMap {
 
 
     /**
+     * Entry 类 为map中基本的单元
      *
+     * key 为键，value 为值
+     * next 是在哈希冲突时，指向的下一个 Entry
+     * h 为传入的hash值
      */
     static class Entry{
         Object key;
@@ -254,11 +255,56 @@ public class MyHashMap {
 
     }
 
+    /**
+     * 查找键值对
+     * @param hash
+     * @param key
+     * @return 查找的元素或者 null
+     */
+
     private Entry getNode(int hash, Object key) {
+        Entry[] tab;
+        Entry first,e;
+        int n;
+        Object k;
+
+        if((tab=table) != null && (n=tab.length) >0 &&
+                (first = tab[(n-1) & hash]) !=null){
+
+            // 检查链表中的第一个
+            if (first.h == hash &&
+                    (((k = first.key) == key ) || (key !=null && key.equals(k)))){
+                return first;
+            }
+            if ((e = first.next) != null){
+                // 判断是否为树形结构
+                // if (e instanceof TreeNode)
+                // 然后调用 TreeNode的搜索方法
+
+                //这个是在链表中查找元素
+                do{
+                    if (e.h == hash &&
+                            (((k = e.key) == key) || (key !=null && key.equals(k))))
+                        return e;
+                }while ((e = e.next) != null);
+            }
+
+
+
+        }
 
         return null;
     }
 
+
+    /**
+     * map中是否有这个 键
+     * @param key
+     * @return false or true
+     */
+    public boolean containsKey(Object key){
+        return getNode(hash(key),key) != null;
+    }
     private Entry newEntry(int hash, Object key, Object value, Entry entry) {
         return new Entry(hash,key,value,entry);
     }
