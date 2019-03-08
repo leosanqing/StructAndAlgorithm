@@ -92,7 +92,7 @@ public class MyHashMap {
 
     Entry[] table;
 
-    // table size;
+    // table 桶中的个数--数组的大小;
     int size;
 
 
