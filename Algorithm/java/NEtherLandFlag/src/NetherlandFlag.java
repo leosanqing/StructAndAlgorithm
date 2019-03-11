@@ -6,21 +6,32 @@ public class NetherlandFlag {
         for(int num : arr){
             System.out.print(num+" ");
         }
-        
+
 
     }
-    
+
     public static void partition(int[] arr,int l,int r,int num){
-        if(l > r)
-            return;
+
         int before = l;
         int after = r ;
         int current = l;
-        while (before < after){
+        while (current < after){
             if (arr[current] < num){
-                swap(arr,before,)
+                swap(arr,before++,current++);
+            }
+            else if (arr[current] > num){
+                swap(arr,after--,current);
+            }
+            else {
+                current++;
             }
         }
+    }
+
+    private static void swap(int[] arr, int i, int i1) {
+        int temp = arr[i];
+        arr[i] = arr[i1];
+        arr[i1] = temp;
     }
 
 }
