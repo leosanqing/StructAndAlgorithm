@@ -11,7 +11,7 @@ import java.util.TreeSet;
  */
 public class Main {
     public static void main(String[] args) {
-        String str="abc";
+        String str="abca";
         System.out.println(Permutation(str));
 
     }
@@ -48,6 +48,23 @@ public class Main {
         char temp = c[a];
         c[a] = c[b];
         c[b] = temp;
+    }
+
+
+    public static void permutation(char[] chars,int index,TreeSet<String> set){
+        if(chars == null || chars.length == 0)
+            return;
+        if(index<0 || index > chars.length-1)
+            return;
+        if( index == chars.length-1)
+            set.add((String.valueOf(chars)));
+        else{
+            for (int i=index;i<chars.length;i++){
+                swap(chars,index,i);
+                permutation(chars,index+1,set);
+                swap(chars,index,i);
+            }
+        }String
     }
 
 }

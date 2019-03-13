@@ -16,7 +16,7 @@
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
-              <caret line="5" column="21" lean-forward="true" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+              <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -47,7 +47,7 @@
         <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/lang/String.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-1483">
-              <caret line="2885" column="28" lean-forward="true" selection-start-line="2885" selection-start-column="28" selection-end-line="2885" selection-end-column="28" />
+              <caret line="2885" column="28" selection-start-line="2885" selection-start-column="28" selection-end-line="2885" selection-end-column="28" />
               <folding>
                 <element signature="e#113343#113344#0" expanded="true" />
                 <element signature="e#113370#113371#0" expanded="true" />
@@ -80,7 +80,7 @@
         <entry file="file://$PROJECT_DIR$/src/LazySingleton.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="540">
-              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
             </state>
           </provider>
         </entry>
@@ -246,12 +246,12 @@
       <option name="presentableId" value="Default" />
       <updated>1552104752438</updated>
       <workItem from="1552104757602" duration="2536000" />
-      <workItem from="1552207272966" duration="1622000" />
+      <workItem from="1552207272966" duration="1779000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4158000" />
+    <option name="totallyTimeSpent" value="4315000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="1" />
@@ -331,7 +331,7 @@
     <entry file="file://$PROJECT_DIR$/src/LazySingleton.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
     </entry>
@@ -345,7 +345,7 @@
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/lang/String.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1483">
-          <caret line="2885" column="28" lean-forward="true" selection-start-line="2885" selection-start-column="28" selection-end-line="2885" selection-end-column="28" />
+          <caret line="2885" column="28" selection-start-line="2885" selection-start-column="28" selection-end-line="2885" selection-end-column="28" />
           <folding>
             <element signature="e#113343#113344#0" expanded="true" />
             <element signature="e#113370#113371#0" expanded="true" />
@@ -369,7 +369,7 @@
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="5" column="21" lean-forward="true" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
         </state>
       </provider>
     </entry>

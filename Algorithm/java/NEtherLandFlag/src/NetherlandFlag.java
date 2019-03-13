@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class NetherlandFlag {
 
     public static void main(String[] args) {
