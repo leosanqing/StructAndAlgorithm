@@ -64,7 +64,7 @@ public class Main {
                 permutation(chars,index+1,set);
                 swap(chars,index,i);
             }
-        }String
+        }
     }
 
 }
