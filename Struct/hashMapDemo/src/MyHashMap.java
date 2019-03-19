@@ -171,9 +171,13 @@ public class MyHashMap {
         }
     }
 
-    private void putVal(int hash, Object key, Object value, boolean onlyIfAbsent, boolean evict) {
-        Entry[] tab;
-        Entry p;
+    public Object put(Object key,Object value){
+        return putVal(hash(key),key,value,false,true);
+    }
+
+    private Object putVal(int hash, Object key, Object value, boolean onlyIfAbsent, boolean evict) {
+            Entry[] tab;
+            Entry p;
         int n,i;
         // 如果第一次 进行存放数据，进行初始化，table 被延迟到进行数据存放时才初始化
         if((tab = table) == null || (n = table.length)==0){
@@ -229,6 +233,7 @@ public class MyHashMap {
                      Object oldValue = e.value;
                      if(!onlyIfAbsent || oldValue == null)
                          e.value = value;
+                     return oldValue;
                 }
 
             }
@@ -243,6 +248,10 @@ public class MyHashMap {
         if(++size >threshold)
             resize();
 
+        // 插入元素
+        //afterNodeInsertion(evict);
+
+        return null;
 
     }
 
@@ -382,7 +391,7 @@ public class MyHashMap {
 
                     // 如果不是树，只是链表,即长度还没有大于 8 进化成树
                     else{
-                        // 扩容后，如果元素的 index 还是原来的。就使用这个 lo前缀的
+                        // 扩容后，如果元素的 index 还是原来的。就使用这个lo前缀的
                         Entry loHead=null, loTail =null;
 
                         // 扩容后  元素index改变，那么就使用 hi前缀开头的
