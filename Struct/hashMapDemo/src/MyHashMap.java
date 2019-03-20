@@ -140,6 +140,12 @@ public class MyHashMap {
 
     }
 
+    /**
+     * 当key是Map的时候才调用
+     * @param m
+     * @param evict
+     */
+
     final void putEntries(Map m,boolean evict){
         int s=m.size();
         if(s>0){
@@ -171,10 +177,24 @@ public class MyHashMap {
         }
     }
 
+
+    /**
+     * 存放单个元素时调用
+     */
+
     public Object put(Object key,Object value){
         return putVal(hash(key),key,value,false,true);
     }
 
+    /**
+     * 存放单个元素的操作
+     * @param hash 哈希值，由key的高16位和低16位异或得到
+     * @param key 键
+     * @param value 值
+     * @param onlyIfAbsent
+     * @param evict
+     * @return
+     */
     private Object putVal(int hash, Object key, Object value, boolean onlyIfAbsent, boolean evict) {
             Entry[] tab;
             Entry p;
@@ -183,6 +203,7 @@ public class MyHashMap {
         if((tab = table) == null || (n = table.length)==0){
             n = (tab = resize()).length;
         }
+        // 如果table 索引上没有存放元素
         if((p = table[i = ((n - 1) & hash)]) == null){
             tab[i] = newEntry(hash,key,value,null);
         }
@@ -330,7 +351,7 @@ public class MyHashMap {
 
         int oldThreshold = threshold;
 
-        int newCap=0,newThreshold=0;
+        int newCap,newThreshold=0;
 
         // 说明已经不是第一次 扩容，那么已经初始化过，容量一定是 2的n次方，所以可以直接位运算
         if(oldCap>0){
@@ -353,12 +374,13 @@ public class MyHashMap {
         else if(oldThreshold>0)
             newCap = oldThreshold;
 
-        // 这个条件是 第一次扩容，且 oldThreshold == 0，即输入的initialCap == 0；
+        // 这个是只有使用无参构造器的时候才能满足的条件。，全部是否默认的值
         else{
             newCap = INIT_CAPACITY;
             newThreshold = (int) (INIT_CAPACITY * DEFAULT_LOADFACTOR);
         }
 
+        //
         if(newThreshold == 0){
 
             float ft = (float) (newCap * loadFactor);
@@ -399,6 +421,9 @@ public class MyHashMap {
                         Entry next;
                         do {
                             next = e.next;
+                            //这个非常重要，也比较难懂，
+                            // 将它和原来的长度进行相与，就是判断他的原来的hash的上一个	bit 位是否为 1。
+                            //以此来判断他是在相同的索引还是table长度加上原来的索引
                             if((e.h & oldCap) == 0){
                                 // 如果 loTail == null ,说明这个 位置上是第一次添加，没有哈希冲突
                                 if(loTail == null)
